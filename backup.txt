@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@1,200&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>PTA Student Form</title>
+    <script src="nav.js" defer></script>
+  </head>
+  <body>
+    <header class="my-primary-header my-flex">
+      <div>
+        <img src="images\logo.png" class="my-logo" alt="REC" />
+      </div>
+      <button
+        class="my-mobile-nav-toggle"
+        aria-controls="my-primary-navigation"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav>
+        <ul
+          id="my-primary-navigation"
+          data-visible="false"
+          class="my-primary-navigation my-flex"
+        >
+          <li>
+            <a href=""> <span aria-hidden="true">00</span>Home </a>
+          </li>
+          <li>
+            <a href=""> <span aria-hidden="true">01</span>Jobs </a>
+          </li>
+          <li>
+            <a href=""> <span aria-hidden="true">02</span>Profile </a>
+          </li>
+          <li>
+            <a href=""> <span aria-hidden="true">03</span>Feed </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="my-container"></div>
+  </body>
+</html>
+
+
