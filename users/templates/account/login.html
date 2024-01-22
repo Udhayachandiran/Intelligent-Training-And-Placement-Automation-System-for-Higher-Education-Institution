@@ -1,0 +1,125 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: rgb(219, 226, 226);
+        }
+        .row{
+            background: white;
+            border-radius: 30px;
+            box-shadow: 12px 12px 22px gray;
+        }
+        img{
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+        .btn1{
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn1:hover{
+            background: white;
+            border: 1px solid;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+{% endif %}
+    <section class="Form my-4 mx-5">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="Tyz.jpg" class="img-fluid" alt="">
+                    <img src="Udei.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <!-- <p>{{ request.session.uname }}</p> -->
+                    {% if user_type == 'hiring_team' %}
+                    <h1 class="font-weight-bold py-3">Hiring team Login</h1>
+
+                    {% elif user_type == 'student' %}
+                    <h1 class="font-weight-bold py-3">Student Login</h1>
+
+                    {% elif user_type == 'tpo' %}
+                    <h1 class="font-weight-bold py-3">TPO Login</h1>
+
+                    {% else %}
+                    <h1 class="font-weight-bold py-3">Login</h1>
+                    {% endif %}
+                    <h4>Sign into your account</h4><br>
+                    <form action="{% url 'loginHTPO' %}" method="post">
+                        {%  csrf_token  %}
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <label>Username</label>
+                                <input type="text" placeholder="username" class="form-control my-3 p-4" name="uname">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <label>Password</label>
+                                <input type="password" placeholder="password" class="form-control my-3 p-4" name="password">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button type="submit",value ="submit", name="submit" class="btn1 mt-3 mb-5">Login</button>
+                            </div>
+                        
+                        <!-- <a href="{% provider_login_url 'google' %}?next=jobs/">login with google</a> -->
+                        </div>
+                        <a href="#">Forgot Password</a>
+                        <p>Don't have an account? <a href="#">Register Here</a></p>
+                    </form>
+                    {% if user_type == 'hiring_team' %}
+                    {% elif user_type == 'tpo' %}
+                    {% else%}
+                    <form action="{% provider_login_url 'google' %}?next=/login-redirect/" method="post">
+                        {% csrf_token %}
+                        <button type="submit"><img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"></button>
+                    </form>
+                    {% endif %}
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

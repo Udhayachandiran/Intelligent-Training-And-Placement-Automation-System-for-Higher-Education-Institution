@@ -1,0 +1,168 @@
+/*for spa.html 2/4 */
+body{
+    background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.spa-center{
+    margin-top: 100px; 
+    border-radius: 5px; 
+    /* background-color: white */
+}
+
+#spa-heading{
+    font-size: 500%;
+    font-weight: bolder;
+    color: transparent  ;
+    margin: 0px auto 1rem auto;
+    text-align: center;
+    -webkit-text-stroke: 1px #fff;
+    background: url('back.png');
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 40s linear infinite;
+}
+@keyframes back{
+    100%{
+        background-position: 4000px 0;
+    }
+}
+/* .spa-center h1{
+    font-size: 500%;
+    font-weight: bolder;
+    color: transparent  ;
+    margin: 0px auto 1rem auto;
+    text-align: center;
+    -webkit-text-stroke: 1px #fff;
+    background: url('back.png');
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 40s linear infinite;
+} */
+.spa-mini{
+    background-color: lightcyan;
+    /* border:rgb(225, 172, 25) 2px solid; */
+    border-radius: 25px; 
+    margin-bottom: 1rem;
+    min-height: 300px;
+    padding: 10px;
+}
+.spa-mini h2{   
+    padding: 10px;
+    padding-left: 30px;
+}
+.spa-cardbox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1rem;
+}
+.spa-cardbox .spa-card{
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+   
+    
+}
+.spa-cardbox .spa-card .spa-numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: blue;
+    color: rgb(183, 120, 243);
+}
+.spa-cardbox .spa-card .spa-cardname{
+    color: black;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.spa-iconBx{
+    font-size: 3.5em;
+    color: black;
+}
+.spa-cardbox .spa-card:hover{
+    background-color: black;
+}
+.spa-cardbox .spa-card:hover .spa-numbers,
+.spa-cardbox .spa-card:hover .spa-cardname,
+.spa-cardbox .spa-card:hover .spa-iconBx{
+    color: white;
+}
+.spa-graphbox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    min-height: 200px;
+}
+.spa-graphbox .spa-box{
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+}
+.spa-graphbox .spa-box:hover{
+    background-color: black;
+}
+
+/*for responsiveness*/
+@media(max-width: 991px){
+    .spa-graphbox{
+        grid-template-columns: 1fr;
+        /* height: auto; */
+    }
+    .spa-cardbox{
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width:1440px){
+    .spa-graphbox{
+        grid-template-columns: 1fr;
+    }
+}
+
+.spa-pred{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    min-height: 200px;
+}
+.spa-pred .spa-pred-mini{
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.spa-pred .spa-pred-mini .spa-pred-mini-number{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: blue;
+    color: rgb(183, 120, 243);
+    text-align: center;
+}
+.spa-pred .spa-pred-mini .spa-pred-mini-name{
+    color: black;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 5px;
+}

@@ -1,0 +1,325 @@
+{% extends "hiring_team/base.html" %} {% load static %} {% block content %}
+<!-- Navbar  -->
+{% include 'hiring_team/navbar.html' %}
+
+<section class="" style="margin-top: .3 rem">
+    <div class="container-fluid px-0">
+        <div class="row g-0">
+            <div class="col-lg-6 vh-100" style="padding:25px">
+               
+                    <h2 style="text-align: center">Applied Students</h2>
+                    <hr />
+                    <div class="container my-5">
+                        <div class="shadow-4 rounded-5 overflow-hidden">
+                            <table class="table align-middle mb-0 bg-white">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Email </th>
+                                        <th>Roll No</th>
+                                        <th>Branch</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for comp in stu_detail %}
+                                    <tr>
+                                        <td>
+                                            <div
+                                                class="d-flex align-items-center"
+                                            >
+                                                <div class="ms-3">
+                                                    <p class="fw-bold mb-1">
+                                                        {{ comp.fname}}
+                                                    </p>
+                                                    <p class="text-muted mb-0">
+                                                        {{ comp.email }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="fw-bold mb-1">
+                                                {{ comp.rollno }}
+                                            </p>
+                                            <p class="text-muted mb-0"></p>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success"
+                                                >Active</span
+                                            >
+                                        </td>
+                                        <td>{{ comp.branch }}</td>
+                                        <td>
+                                            <div>
+                                              <form
+                                                    action="{% url 'viewStuD' %}"
+                                                    method="get"
+                                                >
+                                                    {% csrf_token %}
+                                                    <input
+                                                        id="search"
+                                                        name="indvstu"
+                                                        type="hidden"
+                                                        class="query-search"
+                                                        placeholder="Search..."
+                                                        value="{{ comp.email }}"
+                                                    />
+                                                    <input
+                                                        class="btn btn-link btn-rounded btn-sm fw-bold"
+                                                        data-mdb-ripple-color="dark"
+                                                        type="submit"
+                                                        value="View"
+                                                    />
+                                                </form>
+                                               
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="col-lg-6  green-grad">
+          <div class=" " style="padding:25px">
+            <h2 id="job-h2-comp-name" style="text-align: center">Applied Students</h2>
+            <hr />
+            <!-- <button type="button" class="submit-button" style="margin-right: 15px;">Apply</button> -->
+            <div class="container my-5">
+              <!-- <div class="shadow-4 rounded-5 overflow-hidden"> -->
+                <div
+                class="container view-profile-center-div"
+                
+              >
+                <h1>Your Profile</h1>
+                <section>
+                  <div class="profile-mini">
+                    <h2>Basic Info</h2>
+                  <hr />
+                  <table class="table table-borderless">
+                    <tbody>
+                      {% for count in student_detail %}
+                      <tr>
+                        <th scope="row">Full Name</th>
+                        <td>{{ count.fname }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">Roll no</th>
+                        <td>{{ count.rollno }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Email</th>
+                        <td>{{ count.email }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">DOB</th>
+                        <td>{{ count.dob }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Gender</th>
+                        <td>{{ count.gender }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">College Name</th>
+                        <td>{{ count.clg_name }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Degree</th>
+                        <td>{{ count.degree }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Branch</th>
+                        <td>{{ count.branch }}</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  </div>
+                </section>
+                <!--section2-->
+                <section>
+                  <div class="profile-mini">
+                    <h2>Student Information</h2>
+                  <hr />
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Mobile Number</th>
+                        <td>{{ count.phone_no }}</td>
+                      </tr>
+                      
+                      <!-- <tr>
+                        <th scope="row">Personal Email</th>
+                        <td>{{ count.dob }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">College Email</th>
+                        <td>{{ count.dob }}</td>
+                      </tr> -->
+                      <tr>
+                        <th scope="row">History of arrears</th>
+                        <td>{{ count.hist_arr }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Standing Arrears</th>
+                        <td>{{ count.stan_arr }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </section>
+                <!--section 3-->
+                <section>
+                  <div class="profile-mini">
+                    <h2>Parent Information</h2>
+                  <hr />
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Father's Name</th>
+                        <td>{{ count.fath_name }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Father's Contact Number</th>
+                        <td>{{ count.fath_phone_no }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">Father's Occupation</th>
+                        <td>{{ count.fath_occu }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Mother's Name</th>
+                        <td>{{ count.moth_name }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Mother's Contact Number</th>
+                        <td>{{ count.moth_phone_no }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">Mother's Occupation</th>
+                        <td>{{ count.moth_occu }}</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  </div>
+                </section>
+                <!--section 4-->
+                <section>
+                  <div class="profile-mini">
+                    <h2>Educational Details</h2>
+                  <hr />
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th scope="row">SSLC Mark/CGPA</th>
+                        <td>{{ count.sslc_mark }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SSLC Maximum Marks</th>
+                        <td>{{ count.sslc_max_mark }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SSLC Medium</th>
+                        <td>{{ count.sslc_med }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">SSLC School Name</th>
+                        <td>{{ count.sslc_sch }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">SSLC Board</th>
+                        <td>{{ count.sslc_board }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Year of Passing</th>
+                        <td>{{ count.sslc_yop }}</td>
+                      </tr>
+                    </tbody>
+          
+                    <tbody>
+                      <tr>
+                        <th scope="row">HSC Mark/CGPA</th>
+                        <td>{{ count.hsc_mark }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">HSC Maximum Marks</th>
+                        <td>{{ count.hsc_max_mark }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">HSC Medium</th>
+                        <td>{{ count.hsc_med }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">HSC School Name</th>
+                        <td>{{ count.hsc_sch }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">HSC Board</th>
+                        <td>{{ count.hsc_board }}</td>
+                      </tr>
+                     
+                      <tr>
+                        <th scope="row">Year of Passing</th>
+                        <td>{{ count.hsc_yop }}</td>
+                      </tr>
+                    </tbody>
+          
+                    <tbody>
+                      <tr>
+                        <th scope="row">Diploma Mark/CGPA</th>
+                        <td>{{ count.dip_mark }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Diploma Maximum Marks</th>
+                        <td>{{ count.dip_max_mark }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">Diploma University Name</th>
+                        <td>{{ count.dip_univ_name }}</td>
+                      </tr>
+                      
+                      
+                      <tr>
+                        <th scope="row">Branch</th>
+                        <td>{{ count.dip_branch }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Year of Passing</th>
+                        <td>{{ count.dip_yop }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Acdemic Break</th>
+                        <td>{{ count.break_in_acca }}</td>
+                      </tr>
+                        <th scope="row">Intership Experience</th>
+                        <td>{{ count.intern_exp }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Intership Role</th>
+                        <td>{{ count.intern_role }}</td>
+                      </tr>
+                    </tbody>
+                    
+                    {% endfor %}
+                  </table>
+                  </div>
+                </section>
+              </div>
+              </div>
+          </div>
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

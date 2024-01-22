@@ -1,0 +1,126 @@
+{% extends "students/base.html" %} {% load static %} {% block content %}
+<!-- Navbar  -->
+{% include 'students/navbar.html' %}
+<!-- <style>
+  .resume-main {
+      width: 1000px;
+      height: 1000px;
+  }
+</style> -->
+<h1 id="spa-heading" style="margin-top: 100px">Resume Builder</h1>
+<center>
+    <button class="btn btn-info" onclick="printDiv2()" style="padding: 10px">Print Resume</button>
+</center>
+<div id="print-content">
+    <div class="container resume-main">
+        <div class="left">
+            <div class="left-mini" id="profile-left-mini">
+                <div class="my-profile-pic">
+                    <img
+                        src="{% static 'students/EE2.jpg' %}"
+                        alt="Profile pic"
+                    />
+                </div>
+            </div>
+            <div class="left-mini">
+                <h2>Skills</h2>
+                <div style="display: inline">
+                    <button
+                        class="btn btn-outline-secondary"
+                        id="add-skill-btn"
+                    >
+                        Add Skill
+                    </button>
+                    <button
+                        class="btn btn-outline-secondary"
+                        id="delete-skill-btn"
+                    >
+                        Delete Skill
+                    </button>
+                </div>
+                <hr />
+                <div class="resume-skills">
+                    <span class="badge bg-secondary badge-lg skill-tablet"
+                        >HTML</span
+                    >
+                    <span class="badge bg-secondary badge-lg skill-tablet"
+                        >Bootstrap</span
+                    >
+                </div>
+            </div>
+            <div class="left-mini">
+                <h2>Languages</h2>
+                <hr />
+                <div class="lang-name">English</div>
+                <div class="lang-name">Tamil</div>
+                <div class="lang-name">Hindi</div>
+            </div>
+            <div class="left-mini">
+                <h2>Interests</h2>
+                <div style="display: inline">
+                    <button
+                        class="btn btn-outline-secondary"
+                        id="add-interest-btn"
+                    > Add
+                        <!-- <i class="fas fa-plus"></i> -->
+                    </button>
+                    <button
+                        class="btn btn-outline-secondary"
+                        id="delete-interest-btn"
+                    >
+                       Remove 
+                    </button>
+                </div>
+                <hr />
+                <div class="resume-interest">
+                    <span class="badge bg-secondary badge-lg skill-tablet"
+                        >F1</span
+                    >
+
+                    <span class="badge bg-secondary badge-lg skill-tablet"
+                        >Music</span
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-rows">
+                <div class="right-name">{{ students.fname }}</div>
+                <div class="right-role">Student</div>
+                <hr />
+                <div class="right-p">
+                  <b>Email Address:</b>&emsp; {{ students.email }} <br>
+                  <b>Stream:</b> &emsp;{{ students.branch }} <br>
+                   
+                </div>
+            </div>
+            <div class="right-rows right-mini-2">
+                <h2>Educational Background</h2>
+                <button class="add-mini-btn-2 btn btn-outline-secondary">Add Info</button>
+                <button class="delete-mini-btn-2 btn btn-outline-secondary">Delete Info</button>
+                <hr />
+                <div class="proj-mini"></div>
+                <b>10th Marks:</b>&emsp;{{ students.sslc_mark }} CGPA <br>
+                <b>School Name:</b> &emsp;{{ students.sslc_sch }} <br>
+                <b>12th Marks:</b> &emsp;{{ students.hsc_mark }} <br>
+                <b>HSC School Name:</b>&emsp;{{ students.hsc_sch }} <br>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi
+                distinctio ipsum numquam earum quo fuga totam provident magni
+                architecto excepturi, rem cumque dolore, est cum!
+            </div>
+            <div class="right-rows right-mini">
+                <h2>Personal Projects</h2>
+                <button class="add-mini-btn btn btn-outline-secondary">Add Project</button>
+                <button class="delete-mini-btn btn btn-outline-secondary">Delete Latest Project</button>
+                <hr />
+                <!--new code for adding new sections-->
+                <div class="proj-mini"></div>
+                <!--code end for addding new sections-->
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam,
+                placeat.
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'students/resume.js' %}"></script>
+{% endblock content %}

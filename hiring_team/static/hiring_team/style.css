@@ -1,0 +1,197 @@
+body{
+    background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.job-field{
+    margin-top: 2%;
+}
+
+.job-field-padding{
+
+padding:5px;
+}
+.submit-button{
+    float: right;
+
+}
+/*for job creation page --added 30 March */
+.small-div{
+    box-sizing: border-box;
+    width: 75%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+.small-div input[type=submit]{
+    padding: 0.5rem;
+    width: 25%;
+    height: calc(100% + 5px);
+    margin-top: -20px;
+    border: none;
+    background: #71b7e6;
+    border-radius: 5px;
+    color: #fff;
+    color: #000;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.small-div input[type=submit]:hover{
+    background: #000;
+    color: #fff;
+}
+
+.small-div input[type=text]{
+/*     height: 100%; */
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 18px;
+    padding-left: 15px;
+}
+.small-div input[type=number]{
+    display: inline;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 500;  
+}
+.small-div input[type=radio]{
+    margin: 1rem;
+}
+.small-div input[type=checkbox]{
+    margin: 1rem;
+}
+.small-div label{
+    font-weight: 500;
+}
+.small-div hr{
+    color: purple;
+}
+.small-div .grid-even-columns{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1rem;
+}
+.container-lg .text-center{
+    background-color: lightgoldenrodyellow;
+}
+.my-label{
+    font-weight: 600;
+    font-size: 14px;
+    /*font-size : 1.6rem; */
+    color: rgb(40, 44, 63);
+    line-height: 2rem;
+    font-family: Lato, Roboto, sans-serif;
+}
+.space-above{
+    margin-top: 0.5rem;
+}
+
+.hiring-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 66.66%;
+    margin: auto;
+  }
+
+  .hiring-container .hiring-card {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    margin: 0 20px;
+    border: 1px solid #d4d0d0;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .hiring-card:hover .hiring-card-frame {
+    transform: translateX(-100%);
+  }
+
+  .hiring-card-text {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  }
+
+  .hiring-card-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .hiring-card-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  .hiring-card:hover .hiring-card-button {
+    opacity: 1;
+
+  }
+  .hiring-main{
+    border-radius: 5px;
+    border: solid 2px;
+    background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+    height: 60rem;
+  }
+
+  .green-grad{
+
+    background-color: #378b29;
+    background-image: linear-gradient(315deg, #378b29 0%, #74d680 74%);
+  }
+
+  /*FOR VIEWPROFILE*/
+.view-profile-center-div{
+    margin-top: 100px;
+    border-radius: 5px;
+    background-color: whitesmoke; 
+    width: 66.66%;
+    padding: 2rem;
+}
+.view-profile-center-div h1{
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.view-profile-center-div hr{
+    color: darkgoldenrod;
+}
+.view-profile-center-div .profile-mini{
+    border-radius: 5px;
+    border: 2px solid;
+    padding: 10px;
+    border-color: rgb(225, 172, 25);
+    background-color: lightgoldenrodyellow;
+    margin-bottom: 1rem;
+}
+.view-profile-center-div .profile-mini h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

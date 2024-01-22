@@ -1,0 +1,152 @@
+{% extends "students/base.html" %} {% load static %} {% block content %}
+<!-- Navbar  -->
+{% include 'students/navbar2.html' %}
+<section id="">
+  <div class="container-lg" style="margin-top: 90px">
+    <div class="text-center">
+      <!--
+          <h2>Company display</h2>
+          <p class="lead">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
+            ullam?
+          </p>
+        -->
+    </div>
+
+    <div class="row justify-content-center my-5">
+      <div class="col-lg-6 jobs4-center-div">
+        <h2 id="job-h2-comp-name" style="text-align: center">
+          {{ job_detail.company_name }}
+        </h2>
+        <hr />
+        <form
+          action="{% url 'applyToJob' %}"
+          method="get"
+        >
+          {% csrf_token %}
+          <input
+              id="ap"
+              name="applyjob"
+              type="hidden"
+              class="query-search"
+              value="{{ job_detail.company_name }}"
+          />
+          <input
+              class="submit-button"
+              data-mdb-ripple-color="dark"
+              style="margin-left: 36rem"
+              type="submit"
+              value="Apply"
+          />
+      </form>
+        <!-- <button type="button" class="submit-button" style="margin-left: 36rem" onclick="location.href='{% url 'applyToJob' %}'" >
+          Apply
+        </button> -->
+        <br />
+        <!--New company details display without table-->
+
+        <div class="job4-mini">
+          <label for="job-p-job-title" class="job-head">Job Title</label>
+          <p class="job-content" id="job-p-job-title">
+            {{ job_detail.job_title }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-ug" class="job-head">Type of Offer</label>
+          {% if job_detail.type_of_offer == 'G' %}
+          <p class="job-content" id="job-p-ug">General</p>
+          {% elif job_detail.type_of_offer == 'D' %}
+          <p class="job-content" id="job-p-ug">Dream</p>
+          {% elif job_detail.type_of_offer == 'SD' %}
+          <p class="job-content" id="job-p-ug">Super Dream</p>
+          {% else %}
+          <p class="job-content" id="job-p-ug"></p>
+          {% endif %}
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-package" class="job-head">CTC</label>
+          <p class="job-content" id="job-p-package">
+            {{ job_detail.ctc_min }} - {{ job_detail.ctc_max }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-job-title" class="job-head"
+            >Company Info info</label
+          >
+          <p class="job-content" id="job-p-job-title">
+            {{ job_detail.other_info }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-comp-link" class="job-head">Company web link</label>
+          <p class="job-content" id="job-p-comp-link">
+            {{ job_detail.comp_link }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-drive-start" class="job-head"
+            >Drive Start Date</label
+          >
+          <p class="job-content" id="job-p-drive-start">
+            {{ job_detail.drive_strt_date }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-drive-end" class="job-head">Drive End Date</label>
+          <p class="job-content" id="job-p-drive-end">
+            {{ job_detail.drive_end_date }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-reqd-skills" class="job-head"
+            >Required Skills</label
+          >
+          <p class="job-content" id="job-p-reqd-skills">
+            {{ job_detail.required_skill }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-job-desc" class="job-head">Job Description</label>
+          <p class="job-content" id="job-p-job-desc">
+            {{ job_detail.job_desc }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-deadline" class="job-head"
+            >Deadline to Register</label
+          >
+          <p class="job-content" id="job-p-deadline">
+            {{ job_detail.last_reg_date }}
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-his-arr" class="job-head">History of arrears</label>
+          {% if job_detail.hist_of_arr == 'denied' %}
+          <p class="job-content" id="job-p-his-arr">No backlogs accepted</p>
+          {% else %}
+          <p class="job-content" id="job-p-his-arr">Backlogs accepted</p>
+          {% endif %}
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-10" class="job-head"
+            >Minimum 10th Percentage Required
+          </label>
+          <p class="job-content" id="job-p-10">
+            {{ job_detail.eligible_10th_minp }}%
+          </p>
+        </div>
+        <div class="job4-mini">
+          <label for="job-p-12" class="job-head"
+            >Minimum 12th Percentage required</label
+          >
+          <p class="job-content" id="job-p-12">
+            {{ job_detail.eligible_12th_minp }}%
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+<!--jobs 3 page design from original jobs creation page -->

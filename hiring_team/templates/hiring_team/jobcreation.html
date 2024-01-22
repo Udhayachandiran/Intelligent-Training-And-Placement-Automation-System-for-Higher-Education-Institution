@@ -1,0 +1,251 @@
+{% extends "hiring_team/base.html" %} {% load static %} {% block content %}
+<!-- Navbar  -->
+{% include 'hiring_team/navbar.html' %}
+
+<section id="job-form">
+  <div class="container-lg" style="margin-top: 74px">
+    <div class="small-div" style="background-color: #fff">
+      <div class="text-center">
+        <h2>Create Campus Drive</h2>
+        <p class="lead">
+          
+        </p>
+      </div>
+      <div class="row justify-content-center my-5">
+        <div class="col-lg-6">
+          <form action="{% url 'addCompDet' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="submit-button" /><br />
+            <legend style="margin-top: 10px">Basic Details</legend>
+            <label for="jc-comp-name">Company Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jc-comp-name"
+              placeholder="Enter Company Name"
+              value="{% if student %}{{ student.company_name }}{% endif %}"
+              name="jc-comp-name"
+            />
+
+            <label for="jc-job-title" class="job-field">Job Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jc-job-title"
+              placeholder="Enter Job Title"
+              value="{% if student %}{{ student.job_title }}{% endif %}"
+              name="jc-job-title"
+            />
+            <div class="grid-even-columns">
+              <div class="grid-even-columns-rows">
+                <label for="jc-min-ctc" class="job-field">CTC Min Range</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="jc-min-ctc"
+                  placeholder="Enter min range"
+                  value="{% if student %}{{ student.ctc_min }}{% endif %}"
+                  name="jc-min-ctc"
+                />
+              </div>
+              <div class="grid-even-columns-rows">
+                <label for="jc-max-ctc" class="job-field">CTC Max Range</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="jc-max-ctc"
+                  placeholder="Enter max range"
+                  value="{% if student %}{{ student.ctc_max }}{% endif %}"
+                  name="jc-max-ctc"
+                />
+              </div>
+            </div>
+            <label for="jc-add-info" class="job-field"
+              >Additional Information</label
+            >
+            <textarea
+              class="form-control"
+              id="jc-add-info"
+              name="jc-other-info"
+              rows="3"
+            >{% if student %}{{ student.other_info }}{% endif %}</textarea>
+
+            <label for="jc-comp-link" class="job-field">Company link </label>
+            <input
+              type="text"
+              class="form-control"
+              id="jc-comp-link"
+              placeholder="Enter Company link"
+              name="jc-comp-link"
+              value="{% if student %}{{ student.comp_link }}{% endif %}"
+            />
+
+            <div class="row job-field">
+              <div class="col">
+                <label for="jc-drive-date-start"
+                  >Choose Potential Drive START date:</label
+                >
+                <input
+                  type="date"
+                  id="jc-drive-date-start"
+                  class="job-field-padding"
+                  name="jc-drive-date-start"
+                  value="{% if student %}{{ student.drive_strt_date|date:'Y-m-d' }}{% endif %}"
+                />
+              </div>
+              <div class="col">
+                <label for="jc-drive-date-end"
+                  >Choose Potential Drive END date:</label
+                >
+                <input
+                  type="date"
+                  id="jc-drive-date-end"
+                  class="job-field-padding"
+                  name="jc-drive-date-end"
+                  value="{% if student %}{{ student.drive_end_date|date:'Y-m-d' }}{% endif %}"
+                />
+              </div>
+            </div>
+            <label for="exampleFormControlTextarea1" class="job-field"
+              >Required Skills</label
+            >
+            <textarea
+              class="form-control"
+              id="jc-skills"
+              name="jc-skills"
+              rows="3"
+            >{% if student %}{{ student.required_skill }}{% endif %}</textarea>
+            <label for="jc-job-desc" class="job-field">Job Description</label>
+            <textarea
+              class="form-control"
+              id="jc-job-desc"
+              name="jc-job-desc"
+              rows="3"
+            >{% if student %}{{ student.job_desc }}{% endif %}</textarea>
+            <hr />
+            <legend style="margin-top: 10px">Eligibilty Criteria</legend>
+            <label for="" class="job-head">Backlogs</label>
+            <input
+              type="radio"
+              id="arr-yes"
+              name="jc-backlog"
+              value="allowed"
+              {% if student.hist_of_arr == 'allowed' %}checked{% endif %}
+            />
+            <label for="arr-yes" class="">Allowed</label>
+            <input type="radio" id="arr-no" name="jc-backlog" value="denied" {% if student.hist_of_arr == 'denied' %}checked{% endif %}/>
+            <label for="arr-no" class="">Denied</label><br />
+
+            <label for="" class="job-head">Academic Eligibilty</label><br />
+            <div class="grid-even-columns">
+              <div class="grid-even-columns-rows">
+                <label for="ec-10">Class 10</label>
+                <input
+                  type="number"
+                  id="ec-10"
+                  class="form-control"
+                  name="ec-10"
+                  min="0"
+                  max="100"
+                  value="{% if student %}{{ student.eligible_10th_minp }}{% endif %}"
+                /><br />
+              </div>
+              <div class="grid-even-columns-rows">
+                <label for="ec-12">Class 12</label>
+                <input
+                  type="number"
+                  id="ec-12"
+                  name="ec-12"
+                  class="form-control"
+                  min="0"
+                  max="100"
+                  value="{% if student %}{{ student.eligible_12th_minp }}{% endif %}"
+                /><br />
+              </div>
+            </div>
+
+            <label for="ec-ug">UG CGPA</label>
+                <input
+                  type="number"
+                  step=".01"
+                  id="ec-ug"
+                  class="form-control"
+                  name="ec-ug"
+                  min="0.00"
+                  max="10.00"
+                  value="{% if student %}{{ student.eligible_ug_minp }}{% endif %}"
+                /><br />
+            <!-- <label for="" class="job-head">Eligible Departments</label><br />
+                <input
+                  type="checkbox"
+                  id="dept-aero"
+                  name="ec-dept"
+                  value="Aero"
+                />
+                <label for="dept-aero"> Aero</label>
+                <input
+                  type="checkbox"
+                  id="dept-btech"
+                  name="ec-dept"
+                  value="Bio Tech"
+                />
+                <label for="dept-btech"> Bio Tech</label>
+                <input type="checkbox" id="dept-cse" name="ec-dept" value="CSE" />
+                <label for="dept-btech"> CSE</label>
+                <input
+                  type="checkbox"
+                  id="dept-mech"
+                  name="ec-dept"
+                  value="Mech"
+                />
+                <label for="dept-mech"> Mech</label>
+                <input type="checkbox" id="dept-it" name="ec-dept" value="IT" />
+                <label for="dept-it"> IT</label>
+                <input
+                  type="checkbox"
+                  id="dept-chem"
+                  name="ec-dept"
+                  value="Chem"
+                />
+                <label for="dept-chem"> Chem</label><br /> -->
+            <label for="" class="job-head">Package</label><br />
+            <input type="radio" id="dream-pack" name="jc-package" value="D" {% if student.type_of_offer == 'D' %}checked{% endif %}/>
+            <label for="dream-pack"> Dream (5lpa- 7.5lpa)</label>
+            <input type="radio" id="general-pack" name="jc-package" value="G" {% if student.type_of_offer == 'G' %}checked{% endif %}/>
+            <label for="general-pack"> General (Below 5lpa)</label>
+            <input type="radio" id="super-pack" name="jc-package" value="SD" {% if student.type_of_offer == 'SD' %}checked{% endif %}/>
+            <label for="super-pack"> Super Dream (7.5+lpa)</label><br />
+            <div class="grid-even-columns">
+              <div class="grid-even-columns-rows">
+                <label for="jc-deadline" class="job-head"
+                  >Deadline for registration</label
+                >
+                <input
+                  type="date"
+                  id="jc-deadline"
+                  class="job-field-padding"
+                  name="jc-deadline"
+                  value="{% if student %}{{ student.last_reg_date|date:'Y-m-d' }}{% endif %}"
+                />
+              </div>
+              <div class="grid-even-columns-rows">
+                <label for="jc-documents" class="job-head"
+                  >Attach Documents</label
+                >
+                <input
+                  type="file"
+                  name="jc-documents"
+                  multiple="multiple"
+                  id="jc-documents"
+                  
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,382 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Navbar  -->
+  {% include 'students/navbar.html' %}
+   
+<!-- <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+      <div class="container">
+        <a href="#" class="navbar-brand mb-0 h1">
+          <img
+            class="d-inline-block align-top"
+            src="{% static 'students/logo1.png' %}"
+            width="40"
+            height="30"
+          />
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a href="{% url 'stuHome' %}" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link">Jobs</a>
+            </li>
+            <li class="nav-item active">
+              <a href="#" class="nav-link">Resume Builder</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Profile</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a href="{% url 'stuDet' %}" class="dropdown-item">Add Profile Details</a></li>
+                <li><a href="{% url 'viewUserDet' %}" class="dropdown-item">View Profile</a></li>
+                 <li><a href="#" class="dropdown-item">Sign out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+    <div class="chumma" style="margin-top: 100px">
+    <div class="container justify-content-center">
+      <div class="my-container">
+        <header>PTA Student Form</header>
+        <!--Progress bar-->
+        <div class="my-progress-bar">
+          <div class="my-step">
+            <p>Basic</p>
+            <div class="my-bullet">
+              <span>1</span>
+            </div>
+            <div class="my-check fas fa-check"></div>
+          </div>
+          <div class="my-step">
+            <p>Personal</p>
+            <div class="my-bullet"><span>2</span></div>
+            <div class="my-check fas fa-check"></div>
+          </div>
+          <div class="my-step">
+            <p>Education</p>
+            <div class="my-bullet"><span>3</span></div>
+            <div class="my-check fas fa-check"></div>
+          </div>
+          <div class="my-step">
+            <p>Other</p>
+            <div class="my-bullet"><span>4</span></div>
+            <div class="my-check fas fa-check"></div>
+          </div>        
+        </div>
+        <!--Progress bar code over..check above-->
+        <div class="my-form-outer">
+          <form action="{% url 'addUserDet' %}" method="post">
+            {%  csrf_token  %}
+            <div class="my-page my-slidepage">
+              <div class="my-title">Basic Info:</div>
+              <div class="my-field">
+                <div class="my-label">Full Name</div>
+                <input type="text" id="name-el" name="fname" value="{% if student %}{{ student.fname }}{% endif %}" />
+              </div>
+              <div class="my-field">
+                <div class="my-label"> Email</div>
+                <input type="email" id="uemail-el" value="{{ request.session.user_email }}" name="email" readonly />
+              </div>
+              <div class="my-field">
+                <div class="my-label">Roll no</div>
+                <input type="number" id="roll-el" name="rollno" value="{% if student %}{{ student.rollno }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">DOB</div>
+                <input type="date" id="birth-el" name="dob" value="{% if student %}{{ student.dob|date:'Y-m-d' }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Gender</div>
+                <select id="gender-el" name="gender" >
+                  <option {% if student.gender == 'Male' %}selected{% endif %}>Male</option>
+                  <option {% if student.gender == 'Female' %}selected{% endif %}>Female</option>
+                  <option {% if student.gender == 'Others' %}selected{% endif %}>Others</option>
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">College Name</div>
+                <select id="college-name-el" name="clg_name">
+                  <option {% if student.clg_name == 'REC' %}selected{% endif %}>REC</option>
+                  <option {% if student.clg_name == 'RIT' %}selected{% endif %}>RIT</option>
+                  
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Degree</div>
+                <select id="degree-el" name="degree">
+                  <option {% if student.degree == 'B.E' %}selected{% endif %}>B.E</option>
+                  <option {% if student.degree == 'B.Tech' %}selected{% endif %}>B.Tech</option>
+                  <option {% if student.degree == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Branch</div>
+                <select id="ug-branch-el" name="branch">
+                  <option {% if student.branch == 'Aero' %}selected{% endif %}>Aero</option>
+                  <option {% if student.branch == 'Auto' %}selected{% endif %}>Auto</option>
+                  <option {% if student.branch == 'CSE' %}selected{% endif %}>CSE</option>
+                  <option {% if student.branch == 'IT' %}selected{% endif %}>IT</option>
+                  <option {% if student.branch == 'CSBS' %}selected{% endif %}>CSBS</option>
+                  <option {% if student.branch == 'Mech' %}selected{% endif %}>Mech</option>
+                  <option {% if student.branch == 'ECE' %}selected{% endif %}>ECE</option>
+                  <option {% if student.branch == 'EEE' %}selected{% endif %}>EEE</option>
+                  <option {% if student.branch == 'AIML' %}selected{% endif %}>AIML</option>
+                  <option {% if student.branch == 'Mechatronics' %}selected{% endif %}>Mechatronics</option>
+                  <option {% if student.branch == 'Bio-Tech' %}selected{% endif %}>Bio-Tech</option>
+                  <option {% if student.branch == 'Biomed' %}selected{% endif %}>BioMed</option>
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">UG Year of Passing</div>
+                <select id="ug-pass-el" name="yrOfPass">
+                  <option {% if student.yrOfPass == 2024 %}selected{% endif %}>2024</option>
+                  <option {% if student.yrOfPass == 2025 %}selected{% endif %}>2025</option>
+                  <option {% if student.yrOfPass == 2026 %}selected{% endif %}>2026</option>
+                  <option {% if student.yrOfPass == 2027 %}selected{% endif %}>2027</option>
+                  <option {% if student.yrOfPass == 2028 %}selected{% endif %}>2028</option>
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Dayscholar/Hostler</div>
+                <select id="day-el" name="dayscholar">
+                  <option {% if student.dayscholar == 'Day Scholar' %}selected{% endif %}>Day Scholar</option>
+                  <option {% if student.dayscholar == 'Hostler' %}selected{% endif %}>Hostler</option>
+                </select>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Phone no</div>
+                <input type="number" id="phone-el" name="phone_no" value="{% if student %}{{ student.phone_no }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">UG CGPA</div>
+                <input type="number" step="any" id="ug-cgpa-el" name="ug_cgpa" value="{% if student %}{{ student.ug_cgpa }}{% endif %}"/>
+              </div>
+  
+              <div class="my-field my-nextbtn">
+                <button  type="button" class="my-next-1 my-next">Next</button>
+              </div>
+            </div>
+  
+            <!--New page-->
+  
+  
+            <div class="my-page my-slidepage">
+              <div class="my-title">Personal Information:</div>
+              <div class="my-field">
+                <div class="my-label">Father's Name</div>
+                <input type="text" id="father-name-el" name="fath_name" value="{% if student %}{{ student.fath_name }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Father's Contact No</div>
+                <input type="number" id="father-contact-el" name="fath_phone_no" value="{% if student %}{{ student.fath_phone_no }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">Father's Occupation</div>
+                <input type="text" id="father-occ-el" name="fath_occu" value="{% if student %}{{ student.fath_occu }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Mother's Name</div>
+                <input type="text" id="mother-name-el" name="moth_name" value="{% if student %}{{ student.moth_name }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Mother's Contact No</div>
+                <input type="number" id="mother-contact-el" name="moth_phone_no" value="{% if student %}{{ student.moth_phone_no }}{% endif %}"/>
+              </div>
+             
+              <div class="my-field">
+                <div class="my-label">Mother's Occupation</div>
+                <input type="text" id="mother-occ-el" name="moth_occu" value="{% if student %}{{ student.moth_occu }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Annual Income of Parents</div>
+                <input type="number" id="income-el" name="annual_inc" value="{% if student %}{{ student.annual_inc }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">Native Place</div>
+                <input type="text" id="native-1-el" name="native_place" value="{% if student %}{{ student.native_place }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">Current Address</div>
+                <textarea placeholder="Enter address" rows="10" cols="45"  id="currAddr-1-el" name="curr_addr">
+                  {% if student %}{{ student.curr_addr }}{% endif %}
+                </textarea>
+                
+              </div>
+              <div class="my-field">
+                <div class="my-label">Permanent Address</div>
+                <textarea placeholder="Enter address" rows="10" cols="45"  id="permAddr-1-el" name="perr_addr" >
+                  {% if student %}{{ student.perr_addr }}{% endif %}
+                </textarea>
+                
+              </div>
+              
+             
+              
+              
+              
+  
+              <div class="my-field my-btns">
+                <button  type="button" class="my-prev-2 my-prev">Previous</button>
+                <button  type="button" class="my-next-2 my-next">Next</button>
+              </div>
+            </div>
+            <!--new page-->
+            <div class="my-page my-slidepage">
+              <div class="my-title">Educational Details:</div>
+              <div class="my-field">
+                <div class="my-label">No. of standing arrears</div>
+                <input type="number" id="stanArrear-3-el" name="stan_arr" value="{% if student %}{{ student.stan_arr }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">History of arrears</div>
+                <input type="number" id="hisOfArrears-3-el" name="hist_arr" value="{% if student %}{{ student.hist_arr }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">SSLC Mark/CGPA</div>
+                <input type="number" step="any" id="sslc-1-el" name="sslc_mark" value="{% if student %}{{ student.sslc_mark }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">SSLC Maximum marks</div>
+                <input type="number" step="any" id="sslc-2-el" name="sslc_max_mark" value="{% if student %}{{ student.sslc_max_mark }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">SSLC Medium</div>
+                <input type="text" id="sslc-3-el" name="sslc_med" value="{% if student %}{{ student.sslc_med }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">SSLC School Name</div>
+                <input type="text" id="sslc-4-el" name="sslc_sch" value="{% if student %}{{ student.sslc_sch }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">SSLC Board</div>
+                <input type="text" id="sslc-5-el" name="sslc_board" value="{% if student %}{{ student.sslc_board }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">SSLC Year of Passing</div>
+                <input type="number" id="sslc-6-el" name="sslc_yop" value="{% if student %}{{ student.sslc_yop }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">HSC Mark/CGPA</div>
+                <input type="text" step="any" id="hsc-1-el" name="hsc_mark" value="{% if student %}{{ student.hsc_mark }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">HSC Maximum marks</div>
+                <input type="text" step="any" id="hsc-2-el" name="hsc_max_mark" value="{% if student %}{{ student.hsc_max_mark }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">HSC Medium</div>
+                <input type="text" id="hsc-3-el" name="hsc_med" value="{% if student %}{{ student.hsc_med }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">HSC School Name</div>
+                <input type="text" id="hsc-4-el" name="hsc_sch" value="{% if student %}{{ student.hsc_sch }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">HSC Board</div>
+                <input type="text" id="hsc-6-el" name="hsc_board" value="{% if student %}{{ student.hsc_board }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">HSC Year of Passing</div>
+                <input type="number" id="hsc-8-el" name="hsc_yop" value="{% if student %}{{ student.hsc_yop }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Diploma Mark/CGPA</div>
+                <input type="text" step="any" id="dip-1-el" name="dip_mark" value="{% if student %}{{ student.dip_mark }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Diploma Maximum marks</div>
+                <input type="text" step="any" id="dip-2-el" name="dip_max_mark" value="{% if student %}{{ student.dip_max_mark }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">Diploma University Name</div>
+                <input type="text" id="dip-4-el" name="dip_univ_name" value="{% if student %}{{ student.dip_univ_name }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field">
+                <div class="my-label">Diploma Branch</div>
+                <input type="text" id="dip-6-el" name="dip_branch" value="{% if student %}{{ student.dip_branch }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Diploma Year of Passing</div>
+                <input type="number" id="dip-7-el" name="dip_yop" value="{% if student %}{{ student.dip_yop }}{% endif %}"/>
+              </div>
+              
+              <div class="my-field my-btns">
+                <button  type="button" class="my-prev-3 my-prev">Previous</button>
+                <button  type="button" class="my-next-3 my-next">Next</button>
+              </div>
+            </div>
+            <div class="my-page my-slidepage">
+              <div class="my-title">Other Information:</div>
+              
+              <div class="my-field">
+                <div class="my-label">Break in Academics</div>
+                <input type="text" id="break-el" name="break_in_acca" value="{% if student %}{{ student.break_in_acca }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Professional Certification courses</div>
+                <input type="text" id="cert-course-el" name="certi_course" value="{% if student %}{{ student.certi_course }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Professional Industry Experience</div>
+                <input type="text" id="industry-exp-el" name="intern_exp" value="{% if student %}{{ student.intern_exp }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Name of Company Experience</div>
+                <input type="text" id="comp-exp-name-el" name="intern_comp_name" value="{% if student %}{{ student.intern_comp_name }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Designation/Role</div>
+                <input type="text" id="exp-role-el" name="intern_role" value="{% if student %}{{ student.intern_role }}{% endif %}"/>
+              </div>
+              <div class="my-field">
+                <div class="my-label">Duration</div>
+                <input type="number" id="exp-dura-el" name="inter_duration" value="{% if student %}{{ student.inter_duration }}{% endif %}"/>
+              </div>
+              
+              
+  
+              <div class="my-field my-btns">
+                <button  type="button" class="my-prev-4 my-prev">Previous</button>
+                <button type="submit",value ="submit", name="submit" class="my-submit my-next">Submit</button>
+                
+                
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    
+{% endblock content %}
